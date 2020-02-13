@@ -1,0 +1,30 @@
+1. What are loaders and how do we implement loaders?
+Pretty spot on to its name sake, a loader is part of the OS that loads programs and libraries.
+To implement it, we initialize it in the onCreate function.
+getLoaderManager().initLoader(0, null, this);
+The parameters that this takes are:
+A unique Id and any additional args, and a callback.
+
+
+2. What is an AsyncTaskLoader?
+It is a loader that also provides a Async Task to supplement doing the work.
+
+
+3. What is a Handler Thread for?
+Handler Threads are threads meant to run multiple threads in the background.They can communicate with the UI thread
+in the background.
+The run outside of the activity lifecycle so they need to be cleaned up otherwise they
+will cause memory leaks.
+
+4. What are some common threading restrictions in android?
+You can't block the UI thread, and the Android UI toolkit is not thread safe.
+Memory intensive processes also should not be done on the thread, such as:
+Database queries
+Long running operations (services)
+Network (API) calls
+
+5. What are thread pools and thread pool executors?
+A thread pool is a collection of threads that are pre-initialized. It will do the tasks with the same
+threads, and if there are more tasks than threads, then the task will have to wait in a queue structure.
+The executor is responsible for the thread's execution, instantiation, and running. An Executor will try
+to use a pooled thread before calling for another one, cutting down on the number of created threads.
